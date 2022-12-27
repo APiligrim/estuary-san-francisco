@@ -20,9 +20,9 @@ export default async function Head({ params }) {
   const currentHeaders = headers();
   const { text } = await makeExampleRequest({ host: currentHeaders.get('host') });
 
-  const title = text;
-  const description = 'CHANGEME: description for your application using next-sass';
-  const url = 'CHANGEME: your-production-url.tld';
+  const title = 'Estuary.SF';
+  const description = 'Estuary in San Francisco';
+  const url = 'estuary.sf';
 
   return (
     <>
