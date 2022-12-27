@@ -1,9 +1,30 @@
-import * as Server from '@common/server';
+const NODE = process.env.NODE_ENV || 'development';
+const IS_PRODUCTION = NODE === 'production';
 
-// NOTE(jim):
-// CORS API example.
-export default async function apiIndex(req, res) {
-  await Server.cors(req, res);
+if (!IS_PRODUCTION) {
+  require('dotenv').config();
+}
 
-  res.json({ example: '📦', text: 'CHANGEME: next-sass template' });
+import * as S from '@common/server';
+import * as Support from '@common/support';
+
+import { IncomingWebhook } from '@slack/webhook';
+
+export default async function apiRequestInvite(req, res) {
+  await S.cors(req, res);
+
+  const url = process.env.PARTY_INVITE_URL;
+  const webhook = new IncomingWebhook(url);
+
+  await Support.send({
+    eventName: 'San Francisco Event RSVP',
+    name: req.body.name,
+    email: req.body.email,
+    twitter: req.body.twitter,
+    linkedin: req.body.linkedin,
+    message: req.body.message,
+    webhook,
+  });
+
+  res.json({ success: true });
 }
