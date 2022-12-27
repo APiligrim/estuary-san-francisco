@@ -1,0 +1,61 @@
+.marqueeContainer {
+  background: black;
+  border-top: 1px solid var(--color-green);
+  border-bottom: 1px solid var(--color-green);
+  color: var(--color-green);
+  height: 5vh;
+  font-family: 'Parabole';
+  overflow: hidden;
+  line-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .marquee {
+    left: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    animation: marquee 30s linear infinite;
+  }
+
+  .marquee2 {
+    animation-delay: 15s;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: -100%;
+  }
+}
+
+.text {
+  margin-left: 5px;
+}
+
+.marqueeRight {
+  right: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  animation: marqueeRight 30s linear infinite;
+}
+
+.marquee2Right {
+  animation-delay: 15s;
+}
+
+@keyframes marqueeRight {
+  0% {
+    right: 100%;
+  }
+  100% {
+    right: -100%;
+  }
+}
